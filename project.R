@@ -1,3 +1,6 @@
+#CS513 - Knowledge Distribution and Data Mining
+#US Visa dataset
+
 library(rstudioapi) 
 current_path <- getActiveDocumentContext()$path 
 setwd(dirname(current_path ))
