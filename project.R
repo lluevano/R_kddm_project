@@ -2,10 +2,11 @@
 #US Visa dataset
 
 library(rstudioapi) 
+library(readr)
 current_path <- getActiveDocumentContext()$path 
 setwd(dirname(current_path ))
 
-dataset <- read.csv("us_perm_visas.csv")
+dataset <- read_csv("us_perm_visas.csv")
 summary(dataset)
 clean_dataset <- dataset
 #start cleaning dataset
@@ -20,3 +21,8 @@ clean_dataset$employer_phone <- NULL
 clean_dataset$employer_phone_ext <- NULL
 clean_dataset$case_no <- NULL
 clean_dataset$case_number <- NULL
+clean_dataset$employer_decl_info_title <- NULL
+clean_dataset$employer_postal_code <- NULL
+clean_dataset$foreign_worker_info_city <- NULL
+clean_dataset$orig_case_no <- NULL
+clean_dataset$pw_soc_title <- NULL
