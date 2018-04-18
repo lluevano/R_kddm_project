@@ -1,6 +1,11 @@
 #CS513 - Knowledge Distribution and Data Mining
 #US Visa dataset
 
+#Uncomment these for the first run and then comment again
+#install.packages('rstudioapi')
+#install.packages('readr')
+
+
 library(rstudioapi) 
 library(readr)
 current_path <- getActiveDocumentContext()$path 
@@ -11,7 +16,7 @@ summary(dataset)
 clean_dataset <- dataset
 #start cleaning dataset
 #pass values from country of citizenship 2 to the blank rows of country of citizenship 1
-clean_dataset[is.na(clean_dataset[,11]),11] <- clean_dataset[!is.na(clean_dataset[,12]),12]
+clean_dataset$country_of_citizenship = ifelse(is.na(clean_dataset$country_of_citizenship), clean_dataset$country_of_citzenship, clean_dataset$country_of_citizenship)
 #eliminate extra row for country of citizenship
 clean_dataset <- clean_dataset[,-12]
 #eliminate non-meaningful fields
