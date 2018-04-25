@@ -117,3 +117,22 @@ clean_dataset$pw_level_9089 <- as.factor(clean_dataset$pw_level_9089)
 clean_dataset$pw_soc_code <- as.factor(clean_dataset$pw_soc_code)
 clean_dataset$pw_source_name_9089 <- as.factor(clean_dataset$pw_source_name_9089)
 clean_dataset$pw_unit_of_pay_9089 <- as.factor(clean_dataset$pw_unit_of_pay_9089)
+
+#run random forest
+library(rattle)
+library(e1071)
+set.seed(123)
+
+index<-sort(sample(nrow(clean_dataset),round(.25*nrow(clean_dataset))))
+training<-clean_dataset[-index,]
+test<-clean_dataset[index,]
+
+nBayes_all <- naiveBayes(case_status ~., data =training)
+
+category_all<-predict(nBayes_all,test  )
+
+table(NBayes_all=category_all,case_status=test$case_status)
+NB_wrong<-sum(category_all!=test$case_status)
+NB_error_rate<-NB_wrong/length(category_all)
+NB_error_rate
+
